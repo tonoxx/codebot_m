@@ -1,0 +1,31 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Create a directory
+      file:
+        path: /tmp/example_dir
+        state: directory
+
+    - name: Create a file
+      file:
+        path: /tmp/example_dir/example_file.txt
+        state: touch
+        mode: '0644'
+ 　　　　   
+    - name: Add content to the file
+      block:
+        - name: Write Hello to the file
+          copy:
+            content: "Hello\n"
+            dest: /tmp/example_dir/example_file.txt
+        - name: Write World to the file
+          copy:
+            content: "World\n"
+            dest: /tmp/example_dir/example_file.txt
+  post_tasks:
+    - name: Debug output
+      debug:
+        msg: "File created and content added"
+
+
+　　
