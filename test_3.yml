@@ -1,0 +1,7 @@
+- name: example play
+  hosts: localhost
+  vars:
+    badvar: "value"
+  tasks:
+    - debug:
+        msg: "{{badvar}}"
